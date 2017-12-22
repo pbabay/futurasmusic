@@ -1,20 +1,130 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<div style="display: flex; flex-direction: column; justify-content: space-beteween; height: 100%;">
+  <div class="navbar" style="justify-content: space-between;">
+    <div class="d-flex align-items-center">
+      <img style="height: 48px; width: 48px;" src="assets/icons/musical.png">
+      <b style="margin-left: 7px;">FUTURAS</b>
+    </div>
 
+    <div class="d-flex align-items-center menu-top">
+      <a href="#">Devenir premium</a>
+      <!-- <a href="#">Contacter un artist</a> -->
+    </div>
+
+    <div class="search" style="display: flex; align-items: center;">
+      <div class="icon">
+        <img style="height: 28px; width: 28px; margin-right: 7px;" src="assets/icons/search.png">
+      </div>
+      <input autocomplete="off" autocorrect="off" spellcheck="false" autocapitalize="true" type="text" placeholder="Search Music">
+    </div>
+
+    <div class="weather">
+      <div class="d-flex align-items-center">
+        <img src="assets/icons/chance-of-storm.png">
+        <b>26 °C</b>
+      </div>
+    </div>
+  </div>
+
+  <mat-sidenav-container>
+    <mat-sidenav mode="side" align="start" opened>
+      <div>
+        <p style="color: #aaa;">
+          <small>Explorer</small>
+        </p>
+        <ul class="link-menu">
+          <li>
+            <a class="active" href="#">
+              <img src="assets/icons/home.png"> Home</a>
+          </li>
+          <li>
+            <a href="#">
+              <img src="assets/icons/musical-notes.png"> Morceaux</a>
+          </li>
+          <li>
+            <a href="#">
+              <img src="assets/icons/dj.png"> Artists</a>
+          </li>
+          <li>
+            <a href="#">
+              <img src="assets/icons/music-record.png"> Albums</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="library">
+        <p style="color: #aaa;">
+          <small>Bibliothèques</small>
+        </p>
+        <ul class="link-menu">
+          <li>
+            <a href="#">Playlists</a>
+          </li>
+          <li>
+            <a href="#">Local</a>
+          </li>
+          <li>
+            <a href="#">Amis</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="events">
+        <p style="color: #aaa;">
+          <small>Evènements</small>
+        </p>
+        <ul class="link-menu">
+          <li>
+            <a href="#">Concerts</a>
+          </li>
+          <li>
+            <a href="#">Cabarets</a>
+          </li>
+        </ul>
+      </div>
+    </mat-sidenav>
+
+    <div class="sidenav-content">
+      <h2>Les plus populaires</h2>
+
+      <mat-grid-list cols="4" rowHeight="fit" [style.height]="'400px'" [gutterSize]="'10px'">
+        <mat-grid-tile [rowspan]="2" [colspan]="2" style="border-radius: 3px; background: #eee; background-image: url('http://popmuse.mg/wp-content/uploads/2016/05/jazz-mmc.jpg'); background-size: cover;">
+          <div style="position: absolute; bottom: 0; height: auto; width: calc(100% - 1rem); background: rgba(0,0,0,0.2); padding: 1rem; color: white;">
+            <span style="font-size: 16px; font-weight: bold;">JAZZ MMC - Zaho sefonay</span>
+          </div>
+        </mat-grid-tile>
+
+        <mat-grid-tile *ngFor="let track of top4" [colspan]="1" [rowspan]="1" [style.background-image]="'url('+ track.cover +')'"
+          style="border-radius: 3px; background: #eee; background-size: cover;">
+          <div style="position: absolute; bottom: 0; height: auto; width: calc(100% - 1rem); background: rgba(0,0,0,0.5); padding: 1rem; color: white;">
+            <span style="font-size: 16px; font-weight: normal; display: block; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">{{ track.artist.name }} - {{ track.title }}</span>
+          </div>
+        </mat-grid-tile>
+      </mat-grid-list>
+
+      <br>
+      <h2>Ajouter récement</h2>
+      <div style="position: relative;">
+        <div *ngIf="loadingRecently" style="display: flex; justify-content: center;">
+          <mat-progress-spinner [diameter]="32" mode="indeterminate" color="primary"></mat-progress-spinner>
+        </div>
+        <mat-grid-list cols="6" rowHeight="fit" [style.height]="'190px'" [gutterSize]="'10px'">
+          <mat-grid-tile style="background: white;" *ngFor="let track of recentes" [colspan]="1" [rowspan]="1">
+            <app-track class="full" [track]="track"></app-track>
+          </mat-grid-tile>
+        </mat-grid-list>
+        <button color="default" mat-mini-fab style="position: absolute; top: calc(50% - 30px); right: -0.7rem;">
+          <i class="material-icons">keyboard_arrow_right</i>
+        </button>
+      </div>
+    </div>
+    
+    <div class="d-flex">
+      <div *ngFor="let item of [1,2,3,4,5,6,7,8,9]">
+        <div *appDelay="500 * item; let loaded = loadTime" class="transitionCard">
+          <div class="main">{{item}}</div>
+          <div class="sub">{{loaded | number:'1.2-4'}}</div>
+        </div>
+      </div>
+    </div>
+  </mat-sidenav-container>
+</div>

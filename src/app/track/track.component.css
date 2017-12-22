@@ -1,0 +1,24 @@
+.recent-track {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.recent-track .cover {
+    height: 75%;
+    background: #eee;
+    background-size: cover;
+    border-radius: 3px 3px 0 0;
+}
+
+.recent-track .track-info {
+    padding: 0.5rem;
+    font-size: 14px;
+    background: #eee;
+}
+
+.recent-track .track-info small{
+    color: #888;
+}
